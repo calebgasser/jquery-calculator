@@ -98,7 +98,6 @@ $(document).ready(function(){
                $("#second-number").html(parseInt(secondNumber)); 
             }
         } else if(operators.includes(this.value)){
-            operator = this.value;
             switch(this.value){
                 case 'times':
                     $("#operator").html("*");
@@ -119,7 +118,10 @@ $(document).ready(function(){
                     $("#operator").html("go fuck yourself");
                     break;
             }
-            isSecondNumber = true;
+            if(firstNumber !== ''){
+                operator = this.value;
+                isSecondNumber = true;
+            }
         } else if(isSecondNumber && this.value === 'equals'){
             $("#result").html(doMath(parseInt(firstNumber), parseInt(secondNumber), operator));
         } else if(this.value === 'clear'){
@@ -159,7 +161,7 @@ function doMath(first, second, oper){
         case 'power':
             return Math.pow(first, second);
         default:
-            return "go fuck yourself";
+            return "Yeah, still go fuck yourself";
     }
 }
 
